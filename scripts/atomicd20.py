@@ -29,13 +29,11 @@ roll_period_s = 1
 
 service_address = f"http://{ip}:1986"
 
-request_body = requests.get(service_address).text
-
-geiger_state = GeigerCounterState(**json.loads(request_body))
-random.seed(geiger_state.last_count.timestamp())
-
 def roll():
-    atomic_dice_roll = int(round(random.random() * geiger_state.last_count.timestamp())) % sides
+    request_body = requests.get(service_address).text
+    geiger_state = GeigerCounterState(**json.loads(request_body))
+    random.seed(geiger_state.last_count.timestamp())
+    atomic_dice_roll = round(random.random() * geiger_state.last_count.timestamp()) % sides + 1
     print(f"atomic dice roll : {atomic_dice_roll}")
 
 if auto_roll:
