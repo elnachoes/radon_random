@@ -1,0 +1,16 @@
+[package]
+name = "geiger_counter_service"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = { version = "0.4.40", features =["serde"]}
+rppal = "0.22.1"
+hyper = { version = "1", features = ["full"] }
+tokio = { version = "1", features = ["full"] }
+http-body-util = "0.1"
+hyper-util = { version = "0.1", features = ["full"] }
+unbothered-gpio = "0.1.0"
+# serde = "1.0.219"
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
